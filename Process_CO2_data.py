@@ -1,7 +1,9 @@
 # Jupyter interactive notebook (Python v3.x)
 #
-# - Download CO2 data from MG's GitHub repository
-# - Perform exloratory data analysis, with commentary
+# - Download CO2 data from megarcia's GitHub repository
+# - Exloratory data analysis, with plots and some commentary
+#
+# Run this script on the command line using "python Process_CO2_data.py"
 
 import pycurl
 try:
@@ -10,8 +12,8 @@ try:
 except ImportError:
     https = 0
 import glob
-import numpy
-import matplotlib.pyplot
+import numpy             # often you'll see this as "import numpy as np" (using an alias)
+import matplotlib.pyplot # often you'll see this as "import matplotlib.pyplot as plt" (using an alias)
 
 # Function to download a specified URL to a file (data files, web pages, etc.)
 #
@@ -40,7 +42,7 @@ def get_file(url,fname):
     print(' ')
     return
 
-# Download data from MG's GitHub repository (calls the "get_file" function)
+# Download data from megarcia's GitHub repository (calls the "get_file" function above)
 #
 base_url = 'https://raw.githubusercontent.com/megarcia/SWC_Python/master/'
 file_names = ['MaunaLoa_CO2_monthly_filled_1959-1975.csv',
@@ -89,7 +91,7 @@ matplotlib.pyplot.title('Mauna Loa CO2 Observations, 1959-2015')
 #     saving it. This will probably pause the script until you close that pop-up window.
 #
 # matplotlib.pyplot.show()
-
+#
 # Save the plot to a png file
 #
 plotfname = 'analysis_Keeling_Curve.png'
@@ -134,7 +136,7 @@ matplotlib.pyplot.title('Mauna Loa CO2 Observations')
 #     saving it. This will probably pause the script until you close that pop-up window.
 #
 # matplotlib.pyplot.show()
-
+#
 # Save the plot to a png file
 #
 plotfname = 'analysis_Keeling_Curve_monthly_mean.png'
@@ -159,7 +161,7 @@ matplotlib.pyplot.title('Mauna Loa CO2 Observations')
 #     saving it. This will probably pause the script until you close that pop-up window.
 #
 # matplotlib.pyplot.show()
-
+#
 # Save the plot to a png file
 #
 plotfname = 'analysis_Keeling_Curve_monthly_adjusted.png'
@@ -198,7 +200,7 @@ matplotlib.pyplot.title('Mauna Loa CO2 Observations, 1959-2015')
 #     saving it. This will probably pause the script until you close that pop-up window.
 #
 # matplotlib.pyplot.show()
-
+#
 # Save the plot to a png file
 #
 plotfname = 'analysis_Keeling_Curve_annual_mean.png'
