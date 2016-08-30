@@ -1,6 +1,6 @@
-# Downloads CO2 data from MG's GitHub repository
-#
-# For use with Software Carpentry Python module
+# Download function, just provide full URL (with path) and file name
+# Uses pycurl (web retrieval) and certifi (local SSL certification finder)
+# For use with Software Carpentry Python exploratory data analysis
 #
 # before using this, at command prompt:
 #     python -c "import pycurl"
@@ -9,7 +9,7 @@
 # if one or both return an error, you need to install that package:
 #     conda install <package name>
 #
-# (if you used Anaconda as your python installer, you probably only need certifi)
+# (if you used Anaconda as your Python installer, you probably only need certifi)
 #
 
 import pycurl
@@ -19,11 +19,12 @@ try:
 except ImportError:
     https = 0
 
-def get_file(url,fname):
+def get_file(base_url,fname):
+    """Download web-based file using pycurl with SSL security via certifi"""
     print('Downloading %s' % fname)
     print('from %s' % url)
     c = pycurl.Curl()
-    f = open(url+fname,'wb')
+    f = open(fname,'wb')
     if https:
         c.setopt(pycurl.CAINFO, certifi.where())
         print('- Using http-secure transfer protocol')
@@ -31,7 +32,7 @@ def get_file(url,fname):
         c.setopt(pycurl.SSL_VERIFYPEER, 0)
         c.setopt(pycurl.SSL_VERIFYHOST, 0)
         print('- Using unsecure http transfer protocol')
-    c.setopt(c.URL, url)
+    c.setopt(c.URL, base_url+fname)
     c.setopt(c.WRITEDATA, f)
     c.perform()
     responsecode = c.getinfo(c.RESPONSE_CODE)
