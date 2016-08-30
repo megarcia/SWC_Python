@@ -22,7 +22,7 @@ except ImportError:
 def get_file(base_url,fname):
     """Download web-based file using pycurl with SSL security via certifi"""
     print('Downloading %s' % fname)
-    print('from %s' % url)
+    print('from %s' % base_url)
     c = pycurl.Curl()
     f = open(fname,'wb')
     if https:
